@@ -14,7 +14,7 @@ const SellActionWindow = ({ uid }) => {
   const context = useContext(GeneralContext); // Use context to access close function
 
   const handleSellClick = () => {
-    axios.post("http://localhost:5000/newOrder", {
+    axios.post("https://lazarus-backend-emut.onrender.com/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,
