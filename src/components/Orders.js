@@ -6,17 +6,36 @@ const Orders = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const res = await axios.get("https://lazarus-backend-emut.onrender.com/allOrders", { withCredentials: true });
-                setAllOrders(res.data);
-            } catch (error) {
-                setError("Error fetching orders. Please try again.");
-            } finally {
-                setLoading(false);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchOrders = async () => {
+    //         try {
+    //             const res = await axios.get("https://lazarus-backend-emut.onrender.com/allOrders", { withCredentials: true });
+    //             setAllOrders(res.data);
+    //         } catch (error) {
+    //             setError("Error fetching orders. Please try again.");
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+
+
+    const fetchOrders = async () => {
+    try {
+        const token = localStorage.getItem("authToken");  // Retrieve token from localStorage
+        const res = await axios.get("https://lazarus-backend-emut.onrender.com/allOrders", {
+            headers: {
+                Authorization: `Bearer ${token}`,  // Include token in headers
+            },
+            withCredentials: true,
+        });
+        setAllOrders(res.data);
+    } catch (error) {
+        setError("Error fetching orders. Please try again.");
+    } finally {
+        setLoading(false);
+    }
+};
+
 
         fetchOrders();
     }, []);
