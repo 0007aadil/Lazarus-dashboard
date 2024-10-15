@@ -99,7 +99,7 @@ const Menu = () => {
     // Clear user authentication (e.g., remove token from localStorage)
     localStorage.removeItem("token"); // Adjust this line based on your auth strategy
     // Redirect to the specified URL
-    window.location.href = "http://localhost:3001";
+    window.location.href = "http://lazarus-lac.vercel.app";
   };
 
   // Combine menu classes based on selection
