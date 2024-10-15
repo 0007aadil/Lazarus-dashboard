@@ -87,7 +87,6 @@
 
 
 
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -99,15 +98,14 @@ const Orders = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const token = localStorage.getItem("authToken"); // Retrieve token from localStorage
+                const token = localStorage.getItem("authToken");
                 const res = await axios.get("https://lazarus-backend-emut.onrender.com/allOrders", {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Include token in headers
+                        Authorization: `Bearer ${token}`,
                     },
                 });
                 setAllOrders(res.data);
             } catch (error) {
-                // Check if the error has a response and display the error message
                 const errorMessage = error.response?.data?.message || "Error fetching orders. Please try again.";
                 setError(errorMessage);
             } finally {
@@ -160,3 +158,4 @@ const Orders = () => {
 };
 
 export default Orders;
+
