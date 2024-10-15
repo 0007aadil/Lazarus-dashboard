@@ -11,7 +11,7 @@ const Holdings = () => {
     const fetchData = async () => {
       try {
         const [holdingsResponse, buyOrdersResponse] = await Promise.all([
-          axios.get("http://localhost:5000/allHoldings"),
+          axios.get("https://lazarus-backend-emut.onrender.com/allHoldings"),
           
         ]);
         setAllHoldings(holdingsResponse.data);
