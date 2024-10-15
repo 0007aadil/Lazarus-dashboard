@@ -96,22 +96,32 @@ const Orders = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const token = localStorage.getItem("authToken");
-                const res = await axios.get("https://lazarus-backend-emut.onrender.com/allOrders", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setAllOrders(res.data);
-            } catch (error) {
-                const errorMessage = error.response?.data?.message || "Error fetching orders. Please try again.";
-                setError(errorMessage);
-            } finally {
-                setLoading(false);
-            }
-        };
+         const fetchOrders = async () => {
+    try {
+        const token = localStorage.getItem("authToken");
+        
+        if (!token) {
+            console.error("No token found in local storage");
+            setError("You must be logged in to view orders.");
+            setLoading(false);
+            return;
+        }
+
+        const res = await axios.get("https://lazarus-backend-emut.onrender.com/allOrders", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        setAllOrders(res.data);
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || "Error fetching orders. Please try again.";
+        setError(errorMessage);
+    } finally {
+        setLoading(false);
+    }
+};
+
 
         fetchOrders();
     }, []);
