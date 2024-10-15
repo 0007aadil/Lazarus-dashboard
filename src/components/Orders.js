@@ -9,7 +9,7 @@ const Orders = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/allOrders", { withCredentials: true });
+                const res = await axios.get("https://lazarus-backend-emut.onrender.com/allOrders", { withCredentials: true });
                 setAllOrders(res.data);
             } catch (error) {
                 setError("Error fetching orders. Please try again.");
