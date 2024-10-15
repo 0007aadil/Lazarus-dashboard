@@ -7,7 +7,7 @@ const Positions = () => {
   const [allPositions ,setAllPositions] = useState([]);
 
     useEffect(() => {
-      axios.get("http://localhost:5000/allPositions").then((res) => {
+      axios.get("https://lazarus-backend-emut.onrender.com/allPositions").then((res) => {
         console.log(res.data);
         setAllPositions(res.data);
       })
